@@ -17,6 +17,18 @@ html,body{
   overflow:hidden;
 }
 
+/* Top Loading Bar */
+#loader-bar{
+  position:fixed;
+  top:0;
+  left:0;
+  height:3px;
+  width:0%;
+  background:#E50914;
+  z-index:10000;
+  transition:width 2s ease;
+}
+
 /* Splash Screen */
 #splash{
   position:fixed;
@@ -77,12 +89,15 @@ button{
 
 <body>
 
-<!-- Splash Screen -->
+<!-- Loading Bar -->
+<div id="loader-bar"></div>
+
+<!-- Splash -->
 <div id="splash">
   <img src="https://res.cloudinary.com/dadbjnpxw/image/upload/v1771484649/20251020_194521_i2wgft.png">
 </div>
 
-<!-- Offline Screen -->
+<!-- Offline -->
 <div id="offline">
   <img src="https://i.postimg.cc/mDL8HQws/1748143362878.png" width="140"><br><br>
   <h2>No Internet</h2>
@@ -97,6 +112,7 @@ button{
 const frame = document.getElementById("frame");
 const offline = document.getElementById("offline");
 const splash = document.getElementById("splash");
+const loader = document.getElementById("loader-bar");
 
 function checkConnection(){
   if(navigator.onLine){
@@ -112,8 +128,13 @@ window.addEventListener("online", checkConnection);
 window.addEventListener("offline", checkConnection);
 
 window.onload = function(){
+
+  /* Animate top loading bar */
+  loader.style.width = "100%";
+
   setTimeout(function(){
     splash.classList.add("fade-out");
+    loader.style.opacity="0";
     checkConnection();
   },2000);
 };
