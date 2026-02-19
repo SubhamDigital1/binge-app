@@ -12,38 +12,67 @@
 html,body{
   margin:0;
   padding:0;
+  height:100%;
   background:black;
+  overflow:hidden;
+}
+
+iframe{
+  width:100%;
+  height:100%;
+  border:none;
+  display:none;
+}
+
+#offline{
+  display:none;
   color:white;
   height:100%;
-  display:flex;
   justify-content:center;
   align-items:center;
-  font-family:sans-serif;
+  flex-direction:column;
   text-align:center;
+  font-family:sans-serif;
+}
+button{
+  padding:10px 20px;
+  background:red;
+  border:none;
+  color:white;
+  border-radius:6px;
 }
 </style>
 </head>
 
 <body>
 
-<div>
-  <img src="https://res.cloudinary.com/dadbjnpxw/image/upload/v1771484649/20251020_194521_i2wgft.png" width="140"><br><br>
-  <h2>Loading Binge...</h2>
+<div id="offline">
+  <img src="https://i.postimg.cc/mDL8HQws/1748143362878.png" width="140"><br><br>
+  <h2>No Internet</h2>
+  <p>Please check your connection</p>
+  <button onclick="location.reload()">Retry</button>
 </div>
 
+<iframe id="frame" src="https://dropottplay.blogspot.com/?m=1"></iframe>
+
 <script>
-if (navigator.onLine) {
-  window.location.href = "https://dropottplay.blogspot.com/?m=1";
-} else {
-  document.body.innerHTML = `
-  <div>
-    <img src="https://i.postimg.cc/mDL8HQws/1748143362878.png" width="140"><br><br>
-    <h2>You Are Offline</h2>
-    <p>Please check your internet connection.</p>
-    <button onclick="location.reload()">Retry</button>
-  </div>
-  `;
+const frame = document.getElementById("frame");
+const offline = document.getElementById("offline");
+
+function checkConnection(){
+  if(navigator.onLine){
+    offline.style.display="none";
+    frame.style.display="block";
+  }else{
+    frame.style.display="none";
+    offline.style.display="flex";
+  }
 }
+
+checkConnection();
+
+window.addEventListener("online", checkConnection);
+window.addEventListener("offline", checkConnection);
 
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('sw.js');
