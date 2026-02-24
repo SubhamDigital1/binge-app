@@ -1,124 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Binge</title>
-
-<link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#000000">
-
-<style>
-html,body{
-  margin:0;
-  padding:0;
-  height:100%;
-  background:black;
-  overflow:hidden;
-}
-
-/* Splash Screen */
-#splash{
-  position:fixed;
-  width:100%;
-  height:100%;
-  background:black;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  z-index:9999;
-  transition:opacity 0.8s ease, visibility 0.8s;
-}
-
-#splash.fade-out{
-  opacity:0;
-  visibility:hidden;
-}
-
-#splash img{
-  width:200px;
-  animation:zoomIn 1.2s ease;
-}
-
-@keyframes zoomIn{
-  from{transform:scale(0.8);opacity:0;}
-  to{transform:scale(1);opacity:1;}
-}
-
-/* Website Frame */
-iframe{
-  width:100%;
-  height:100%;
-  border:none;
-  display:none;
-}
-
-/* Offline Screen */
-#offline{
-  display:none;
-  color:white;
-  height:100%;
-  justify-content:center;
-  align-items:center;
-  flex-direction:column;
-  text-align:center;
-  font-family:sans-serif;
-}
-
-button{
-  padding:10px 20px;
-  background:#E50914;
-  border:none;
-  color:white;
-  border-radius:6px;
-}
-</style>
+<title>Test</title>
 </head>
-
-<body>
-
-<!-- Splash Screen -->
-<div id="splash">
-  <img src="https://res.cloudinary.com/dadbjnpxw/image/upload/v1771484649/20251020_194521_i2wgft.png">
-</div>
-
-<!-- Offline Screen -->
-<div id="offline">
-  <img src="https://i.postimg.cc/mDL8HQws/1748143362878.png" width="140"><br><br>
-  <h2>No Internet</h2>
-  <p>Please check your connection</p>
-  <button onclick="location.reload()">Retry</button>
-</div>
-
-<!-- Website -->
-
+<body style="background:black;color:white;text-align:center;padding-top:100px;">
+<h1>Working OK</h1>
 
 <script>
-const frame = document.getElementById("frame");
-const offline = document.getElementById("offline");
-const splash = document.getElementById("splash");
-
-function checkConnection(){
-  if(navigator.onLine){
-    offline.style.display="none";
-    frame.style.display="block";
-  }else{
-    frame.style.display="none";
-    offline.style.display="flex";
-  }
-}
-
-window.addEventListener("online", checkConnection);
-window.addEventListener("offline", checkConnection);
-
-window.onload = function(){
-  setTimeout(function(){
-    splash.classList.add("fade-out");
-    checkConnection();
-  },2000);
-};
-
-
+setTimeout(function(){
+window.location.href="https://dropottplay.blogspot.com/?m=1";
+},2000);
 </script>
 
 </body>
