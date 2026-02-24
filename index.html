@@ -92,36 +92,38 @@ button{
 
 <!-- Website -->
 <iframe id="frame" src="https://bingeott.blogspot.com/?m=1"></iframe>
-
 <script>
-const frame = document.getElementById("frame");
-const offline = document.getElementById("offline");
+
 const splash = document.getElementById("splash");
+const offline = document.getElementById("offline");
 
-function checkConnection(){
-  if(navigator.onLine){
-    offline.style.display="none";
-    frame.style.display="block";
-  }else{
-    frame.style.display="none";
-    offline.style.display="flex";
-  }
+function goToSite(){
+    window.location.replace("https://dropottplay.blogspot.com/?m=1");
 }
 
-window.addEventListener("online", checkConnection);
-window.addEventListener("offline", checkConnection);
+window.addEventListener("load", function(){
 
-window.onload = function(){
-  setTimeout(function(){
-    splash.classList.add("fade-out");
-    checkConnection();
-  },2000);
-};
+    setTimeout(function(){
 
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('sw.js');
-}
+        splash.style.opacity = "0";
+
+        setTimeout(function(){
+
+            if(navigator.onLine){
+                goToSite();
+            }else{
+                splash.style.display="none";
+                offline.style.display="flex";
+            }
+
+        },800);
+
+    },2000);
+
+});
+
 </script>
+
 
 </body>
 </html>
