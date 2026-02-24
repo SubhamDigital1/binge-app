@@ -4,7 +4,7 @@ const splash = document.getElementById("splash");
 const offline = document.getElementById("offline");
 
 function goToSite(){
-    window.location.replace("https://dropottplay.blogspot.com/?m=1");
+    window.location.replace("https://bingeott.blogspot.com/?m=1");
 }
 
 window.addEventListener("load", function(){
