@@ -1,31 +1,31 @@
 <script>
 
-const offline = document.getElementById("offline");
 const splash = document.getElementById("splash");
+const offline = document.getElementById("offline");
 
-function checkConnection(){
-  if(navigator.onLine){
-    offline.style.display="none";
-  }else{
-    offline.style.display="flex";
-  }
+function goToSite(){
+    window.location.replace("https://dropottplay.blogspot.com/?m=1");
 }
 
-window.addEventListener("online", checkConnection);
-window.addEventListener("offline", checkConnection);
+window.addEventListener("load", function(){
 
-window.onload = function(){
-  setTimeout(function(){
-    splash.classList.add("fade-out");
+    setTimeout(function(){
 
-    if(navigator.onLine){
-      // 2 sec পর Blogger site এ redirect করবে
-      window.location.href = "https://dropottplay.blogspot.com/?m=1";
-    }else{
-      offline.style.display="flex";
-    }
+        splash.style.opacity = "0";
 
-  },2000);
-};
+        setTimeout(function(){
+
+            if(navigator.onLine){
+                goToSite();
+            }else{
+                splash.style.display="none";
+                offline.style.display="flex";
+            }
+
+        },800);
+
+    },2000);
+
+});
 
 </script>
